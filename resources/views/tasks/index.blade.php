@@ -1,20 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!--ndex.blade.php -->
 
-    <title>My First MVC</title>
-
-</head>
-<body>
-    <ul>
-        @foreach ($tasks as $task)
+<ul>
+    @foreach ($tasks as $task)
         <li>
-            <a href="/tasks/{{$task->id}}">
-                    {{ $task->body }}
-
+            <a href="/MyFirstMVC/public/tasks/{{$task->id}}">
+                {{ $task->body }}
             </a>
         </li>
-        @endforeach
-    </ul>
-</body>
-</html>
+    @endforeach
+</ul>
+
+
+
+
+
+
+
+
+
+
+
