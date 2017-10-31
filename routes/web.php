@@ -12,13 +12,26 @@
 */
 use App\Task;
 
+//controller => TasksController
+//Eloquent model = Task
+//migrate => create_Task_table
 
-Route::get('/tasks', 'TasksController@index');
-Route::get('/tasks/{task}','TasksController@show');
 Route::post('/tasks','TasksController@store');
-Route::patch('/tasks/{task}/edit','TasksController@edit');
-Route::delete('/tasks/{task}/delete','TasksController@destroy');
-Route::get('/tasks/{task}/create','TasksController@create');
+Route::get('/tasks', 'TasksController@index');
+Route::get('/tasks/create', 'TasksController@create');
+
+Route::get('/tasks/edit/{task}','TasksController@edit');
+Route::patch('/tasks/edit/{task}', 'TasksController@update');
+
+//Route::get('/tasks/delete/{task}','TasksController@delete');
+Route::delete('/tasks/delete/{task}','TasksController@destroy');
+
+Route::get('/tasks/{task}', 'TasksController@show');
+Route::get('/tasks/cancel', 'TasksController@index');
+
+
+
+
 
 
 //Route::get('/tasks', function () {
