@@ -2,8 +2,9 @@
 @extends('layout')
 
 @section('content')
+    @if(!($tasks->isEmpty()))
 
-                <div class="page-header">
+              <div class="page-header">
                     <h1>Task List</h1>
                 </div>
                 <div class="row">
@@ -27,7 +28,7 @@
 
                                     <td>
                                         <?php
-                                            if (!($task->completed)){
+                                            if (($task->completed)==0){
                                                 echo "No";
                                             } else {
                                                 echo "Yes";
@@ -69,7 +70,7 @@
                                                     <div class="modal-body text-danger text-center">
                                                         <h4>Task name: {{$task->body}}</h4>
                                                         <h4>Completed: <?php
-                                                            if (!($task->completed)){
+                                                            if (($task->completed)=='1'){
                                                                 echo "No";
                                                             } else {
                                                                 echo "Yes";
@@ -102,15 +103,20 @@
                             @endforeach
                             </tbody>
                         </table>
-                        <div class="btn-group-vertical pull-right">
-                            <button type="button" class="btn btn-primary">
+                    </div>
+              </div><!--/row-->
+    @else
+        <!--H4> Please click on "Create New Task" to create task.  </H4-->
+    @endif
+
+    <div class="btn-group-vertical pull-left">
+        <button type="button" class="btn btn-primary">
                                 <a class="bg-primary" href="/MyFirstMVC/public/tasks/create">Create New Task</a>
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </button>
 
-                        </div>
-                    </div>
-                </div><!--/row-->
+    </div>
+
 
 
 

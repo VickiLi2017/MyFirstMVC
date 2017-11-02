@@ -1,11 +1,9 @@
-<!doctype html>
-<html>
-<head>
+<!-- about.blade.php -->
 
-    <title>My First MVC</title>
 
-</head>
-<body>
-<h1>About Us</h1>
-</body>
-</html>
+@extends('layout')
+
+@section('content')
+    <h3>About Task Manager</h3>
+
+@endsection

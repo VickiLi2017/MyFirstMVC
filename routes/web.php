@@ -29,8 +29,9 @@ Route::delete('/tasks/delete/{task}','TasksController@destroy');
 Route::get('/tasks/{task}', 'TasksController@show');
 Route::get('/tasks/cancel', 'TasksController@index');
 
-
-
+Route::get('/about', function(){ return view('about');  });
+Route::get('/contact', function(){ return view('contact');  });
+//Route::get('/tasks/create', function(){ return view('tasks.create'); });
 
 
 
@@ -51,9 +52,9 @@ Route::get('/tasks/{task}', function($id){
 
     return view('tasks.show', compact('task'));
 });
-*/
+
 Route::get('/about', function(){
     return view('about');
 });
-
+*/
                        //url: '/tasks','TasksController@index');

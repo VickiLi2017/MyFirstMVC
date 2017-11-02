@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\MessageBag;
 use App\Task;
 
 class TasksController extends Controller
@@ -37,9 +38,10 @@ class TasksController extends Controller
      */
     public function create()
     {
-        printf("Start create");
+        //printf("Start create");
         return view('tasks.create');
     }
+
 
 
     /**
@@ -50,7 +52,10 @@ class TasksController extends Controller
      */
     public function store(Request $request)
     {
-        echo "Start store";
+        //echo "Start store";
+        $this->validate(request(), [
+            'body'=> 'required'
+        ]);
         $task = new Task;
         $task->body = request('body');
         $task->completed = request('completed');
@@ -68,9 +73,7 @@ class TasksController extends Controller
      */
     public function edit(Task $task)
     {
-        //return $task;
-        $task = Task::find($task->id);
-        return view('tasks.edit', compact(['task','id']));
+        return view('tasks.edit', compact(['task','id'])); $task = Task::find($task->id);
     }
 
     /**
@@ -80,8 +83,12 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Task $task)
+    public function update(Request $request, Task $task)
     {
+        $this->validate(request(),[
+            'body'=> 'required|min:1'
+        ]);
+
         $task->body = request('body');
         $task->completed = request('completed');
         $task->save();

@@ -20,7 +20,7 @@
         <h1>Edit Task</h1>
     </div>
     <form action="/MyFirstMVC/public/tasks/edit/{{$task->id}}" method="post" class="col-sm-8">
-
+        @include('layouts.errors')
         <div class="form-group">
             {{ csrf_field() }}
             {{ method_field('patch') }}
@@ -30,8 +30,13 @@
         <div class="form-group">
             <label for="taskStatus">Task Status</label>
             <select class="form-control" id="taskStatus" name="completed" value="{{$task->completed}}">
-                <option value="1">Completed</option>
-                <option value="2">Incomplete</option>
+                @if (!($task->completed)){
+                    <option value="0" selected>Incomplete</option>
+                    <option value="1">Completed</option>
+                @else
+                    <option value="0">Incomplete</option>
+                    <option value="1"  selected>Completed</option>
+                @endif
             </select>
         </div>
         <button type="submit" class="btn btn-primary">Save</button>
