@@ -14,6 +14,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Task Name</th>
+                                <th>Create By</th>
                                 <th>Completed</th>
                                 <th>Created</th>
                                 <th>Action</th>
@@ -25,7 +26,7 @@
                                 <tr>
                                     <td>{{$task->id}}</td>
                                     <td><a href="/MyFirstMVC/public/tasks/{{$task->id}}">{{ $task->body }}</a></td>
-
+                                    <td>{{$task->user->name}}</td>
                                     <td>
                                         <?php
                                             if (($task->completed)==0){

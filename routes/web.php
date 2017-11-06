@@ -20,7 +20,7 @@ Route::post('/tasks','TasksController@store');
 Route::get('/tasks', 'TasksController@index');
 Route::get('/tasks/create', 'TasksController@create');
 
-Route::get('/tasks/edit/{task}','TasksController@edit');
+Route::get('/tasks/edit/{}','TasksController@edit');
 Route::patch('/tasks/edit/{task}', 'TasksController@update');
 
 //Route::get('/tasks/delete/{task}','TasksController@delete');
@@ -28,10 +28,16 @@ Route::delete('/tasks/delete/{task}','TasksController@destroy');
 
 Route::get('/tasks/{task}', 'TasksController@show');
 Route::get('/tasks/cancel', 'TasksController@index');
+Route::get('/tasks/user/{user}', 'TasksController@myTask');
 
 Route::get('/about', function(){ return view('about');  });
 Route::get('/contact', function(){ return view('contact');  });
 //Route::get('/tasks/create', function(){ return view('tasks.create'); });
+
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/logout', 'HomeController@destroy');    //'HomeController@destroy');
+
 
 
 
@@ -58,3 +64,4 @@ Route::get('/about', function(){
 });
 */
                        //url: '/tasks','TasksController@index');
+

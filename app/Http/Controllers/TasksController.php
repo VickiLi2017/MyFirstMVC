@@ -2,12 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\MessageBag;
 use App\Task;
+use Illuminate\Support\Facades\DB;
+use phpDocumentor\Reflection\Types\Integer;
+
+
+
 
 class TasksController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index','show']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,6 +28,14 @@ class TasksController extends Controller
     {
         $tasks = Task::all();
         return view('tasks.index', compact('tasks'));
+    }
+
+    public function myTask(User $user)
+    {
+        $tasks = User::find($user->id)->task; // Task::find(user);   //->where('user_id', $id )->first();
+        //dd($tasks);
+       return view('tasks.index', compact('tasks'));
+
     }
 
     /**
@@ -56,7 +75,9 @@ class TasksController extends Controller
         $this->validate(request(), [
             'body'=> 'required'
         ]);
+
         $task = new Task;
+        $task->user_id = auth()->user()->id;
         $task->body = request('body');
         $task->completed = request('completed');
         $task->save();
