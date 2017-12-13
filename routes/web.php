@@ -19,20 +19,18 @@ use App\Task;
 Route::post('/tasks','TasksController@store');
 Route::get('/tasks', 'TasksController@index');
 Route::get('/tasks/create', 'TasksController@create');
-
-Route::get('/tasks/edit/{}','TasksController@edit');
-Route::patch('/tasks/edit/{task}', 'TasksController@update');
-
+Route::get('/tasks/{task}/edit','TasksController@edit');
+Route::patch('/tasks/{task}/edit', 'TasksController@update');
 //Route::get('/tasks/delete/{task}','TasksController@delete');
-Route::delete('/tasks/delete/{task}','TasksController@destroy');
-
+Route::delete('/tasks/{task}/delete','TasksController@destroy');
 Route::get('/tasks/{task}', 'TasksController@show');
 Route::get('/tasks/cancel', 'TasksController@index');
 Route::get('/tasks/user/{user}', 'TasksController@myTask');
-
 Route::get('/about', function(){ return view('about');  });
 Route::get('/contact', function(){ return view('contact');  });
 //Route::get('/tasks/create', function(){ return view('tasks.create'); });
+
+Route::post('/tasks/{task}/comments', 'CommentsController@create');
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');

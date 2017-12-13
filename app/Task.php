@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
-    public function scopeIncomplete($query)
-    {
+    protected $guarded=array();
+    public function scopeIncomplete($query){
         //return $query->where('completed',0);
         return $this->belongsTo(Task::class);
     }
@@ -15,6 +15,15 @@ class Task extends Model
     public function user(){
         return $this->belongsTo((User::class));
     }
+
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
+
+    public function addComment($body) {
+        $this->comments()->Create(compact('body'));
+    }
+
 }
 
 

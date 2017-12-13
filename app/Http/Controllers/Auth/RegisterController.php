@@ -74,6 +74,6 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
         auth()->login($user);
-        return redirect()->home();
+        return $user;   //redirect()->home();
     }
 }

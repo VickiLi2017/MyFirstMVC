@@ -11,9 +11,21 @@
 
     <title>My First MVC / Layout </title>
 
-    <!-- Bootstrap core CSS -->
+
+
+        <!-- Bootstrap core CSS -->
     <link href="https://getbootstrap.com/docs/3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/3.3/examples/navbar/navbar.css" rel="stylesheet">
+
+    <style type=”text/css”>
+        @media (min-width: 768px) {
+            .container {
+                width: 100%;
+            }
+        }
+    </style>
+
+
 </head>
 
 <body>
@@ -51,6 +63,50 @@
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="https://getbootstrap.com/docs/3.3/dist/js/bootstrap.min.js"></script>
 
+
+    <!--<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    -->
+    <script>
+
+        $(document).on("click", ".open-DeleteDialog", function (event) {
+            //var myBookId = $(this).data('id');
+            //$(".modal-body #bookId").val( myBookId );
+
+            //var myID= document.getElementById('taskId').value;
+            //<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button>
+            // var recipient = button.data('whatever') // Extract info from data-* attributes
+            //var thisTask =  $(this).attr('data-value');               //$tr.data('value');
+            //alert(thisTask);
+
+            // var id = thisTask->id;  //.data('id')
+           // var button = $(event.relatedTarget); // Button that triggered the modal
+           // var buttonID = $(this).attr('data-id');  //button.data('id') // Extract info from data-* attributes
+          //  console.log('buttonID: '+buttonID);
+            //alert(buttonID);
+/*
+            var task = $.parseJSON(thisTask);
+            //var button = $(event.relatedTarget) // Button that triggered the modal
+            alert('id: '+task['id']);
+            alert('taskName: '+task['body']);
+            alert('completed: '+task['completed']);
+            alert('createAt: '+task['created_at']);
+            //
+
+            var myModal = $(this);
+
+            myModal.find('.modal-header .modal-title').innerHTML ="Test Title4"; //('Delete Task ');
+            myModal.find('.modal-body #taskID').innerHTML= task['id'];
+            myModal.find('.modal-body #taskName').innerHTML = task['body'];
+            myModal.find('.modal-body #completed').innerHTML = task['completed'];
+            myModal.find('.modal-body #createAt').innerHTML = task['created_at'];
+            //alert( myModal.find('.modal-body .taskID').value()   );
+            myModal.modal('show');
+            console.log( 'taskID' + document.getElementById('taskID').innerHTML );
+
+*/      });
+    </script>
 
 </body>
 

@@ -4,48 +4,48 @@
 @section('content')
     @if(!($tasks->isEmpty()))
 
-              <div class="page-header">
+            <div class="page-header">
                     <h1>Task List</h1>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <table class="table table-table table-striped">
-                            <thead>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <table class="table table-table table-striped">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Task Name</th>
+                            <th>Create By</th>
+                            <th>Completed</th>
+                            <th>Created</th>
+                            <th>Action</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($tasks as $task)
                             <tr>
-                                <th>#</th>
-                                <th>Task Name</th>
-                                <th>Create By</th>
-                                <th>Completed</th>
-                                <th>Created</th>
-                                <th>Action</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach ($tasks as $task)
-                                <tr>
-                                    <td>{{$task->id}}</td>
-                                    <td><a href="/MyFirstMVC/public/tasks/{{$task->id}}">{{ $task->body }}</a></td>
-                                    <td>{{$task->user->name}}</td>
-                                    <td>
-                                        <?php
-                                            if (($task->completed)==0){
-                                                echo "No";
-                                            } else {
-                                                echo "Yes";
-                                            }
-                                        ?>
-                                    </td>
+                                <td>{{$task->id}}</td> <!-- id={'bttn//$task->id//'} -->
+                                <td id={{$task->body}} ><a href="/MyFirstMVC/public/tasks/{{$task->id}}">{{ $task->body }}</a></td>
+                                <td>{{$task->user->name}}</td>
+                                <td>
+                                    <?php
+                                        if (($task->completed)==0){
+                                            echo "No";
+                                        } else {
+                                            echo "Yes";
+                                        }
+                                    ?>
+                                </td>
 
-                                    <td>
-                                        {{$task->created_at}}
-                                        <!--$date = date("d/m/Y", $task->created_at)-->
-                                        <!-- date("m/d/y", $task->created_at)-->
-                                    </td>
+                                <td>
+                                    {{$task->created_at}}
+                                    <!--$date = date("d/m/Y", $task->created_at)-->
+                                    <!-- date("m/d/y", $task->created_at)-->
+                                </td>
 
                                     <td><button type="button" class="btn btn-warning">
                                             <span class="glyphicon glyphicon-edit"></span>
-                                            <a href="/MyFirstMVC/public/tasks/edit/{{$task->id}}">Edit</a>
+                                            <a href="/MyFirstMVC/public/tasks/{{$task->id}}/edit">Edit</a>
                                         </button>
                                     </td>
                                     <td><!--button type="button" class="btn btn-danger">
@@ -54,12 +54,12 @@
                                             </a>
                                         </button-->
                                         <div>
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">
+                                        <button type="button" class="open-DeleteDialog btn btn-danger" data-toggle="modal" data-target="#myModal-{{$task->id}}">
                                             <span class="glyphicon glyphicon-trash"></span>
                                         </button>
 
                                         <!-- Modal -->
-                                        <div class="modal fade" id="myModal" role="dialog">
+                                        <div class="modal fade" id="myModal-{{$task->id}}" role="dialog">
                                             <div class="modal-dialog">
 
                                                 <!-- Modal content-->
@@ -82,7 +82,7 @@
                                                     <div class="modal-footer">
                                                         <h5 class="text-center">Please click on "confirm" to delete task. Click on "cancel" to cancel delete task.  </h5>
 
-                                                        <form action="/MyFirstMVC/public/tasks/delete/{{$task->id}}" method="post" class="col-sm-8">
+                                                        <form action="/MyFirstMVC/public/tasks/{{$task->id}}/delete" method="post" class="col-sm-8">
                                                             {{csrf_field()}}
                                                             {{ method_field('delete') }}
 
@@ -112,18 +112,11 @@
 
     <div class="btn-group-vertical pull-left">
         <button type="button" class="btn btn-primary">
-                                <a class="bg-primary" href="/MyFirstMVC/public/tasks/create">Create New Task</a>
-                                <span class="glyphicon glyphicon-pencil"></span>
-                            </button>
+            <a class="bg-primary" href="/MyFirstMVC/public/tasks/create">Create New Task</a>
+            <span class="glyphicon glyphicon-pencil"></span>
+        </button>
 
     </div>
-
-
-
-
-
-
-
 
 
 @endsection

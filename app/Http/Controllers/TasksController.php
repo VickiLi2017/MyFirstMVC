@@ -132,7 +132,7 @@ class TasksController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        //dd($task->id);
         $task->delete();
 
         // redirect
